@@ -1,0 +1,15 @@
+class Solution:
+    def targetIndices(self, nums: List[int], target: int) -> List[int]:
+        res = []
+        for i in range(len(nums)-1):
+            min = i
+            for j in range(i+1,len(nums)):
+                if nums[j]<nums[min]:
+                    min = j
+            if min != i:
+                nums[i],nums[min] = nums[min],nums[i]
+    
+        for k in range(len(nums)):
+            if nums[k]==target:
+                res.append(k)
+        return res
