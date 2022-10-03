@@ -1,0 +1,24 @@
+class Solution:
+    def minIncrementForUnique(self, nums: List[int]) -> int:
+        if not nums:
+            return 0
+        nums = sorted(nums)
+        pre =  -1
+        count = Counter(nums)
+        ans = 0
+        mmax = max(nums)
+        for num in range(mmax+1):
+            cnt = count[num]
+            if cnt > 0:
+                totalMoves = 0
+                maxMove = cnt - 1
+                totalMoves = maxMove * (maxMove + 1)//2
+                maxNum = num + maxMove
+
+                if num <= pre:
+                    totalMoves += cnt * (pre-num+1)
+                    maxNum += pre - num + 1
+                ans += totalMoves
+                pre = maxNum
+           
+        return ans
