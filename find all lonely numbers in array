@@ -1,0 +1,8 @@
+class Solution:
+    def findLonely(self, nums: List[int]) -> List[int]:
+        lonely = []
+        num_count = Counter(nums)
+        for n in num_count:
+            if num_count[n]==1 and n-1 not in num_count and n+1 not in num_count:
+                lonely.append(n)
+        return lonely
