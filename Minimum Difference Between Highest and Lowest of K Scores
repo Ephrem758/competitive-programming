@@ -1,0 +1,12 @@
+class Solution:
+    def minimumDifference(self, nums: List[int], k: int) -> int:
+        nums.sort()
+        if len(nums)==1:
+            return 0
+        min_diff = float('inf')
+        l = 0
+        while l <= len(nums)-k:
+            c = nums[l+k-1]-nums[l]
+            min_diff = min(min_diff,c)
+            l+=1
+        return min_diff
