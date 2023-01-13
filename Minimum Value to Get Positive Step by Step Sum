@@ -1,0 +1,8 @@
+class Solution:
+    def minStartValue(self, nums: List[int]) -> int:
+        total = 0
+        min_num = float('inf')
+        for i in nums:
+            total+=i
+            min_num = min(min_num,total)
+        return ((min_num) * (-1)) + 1 if min_num<=0 else 1
