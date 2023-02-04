@@ -1,0 +1,33 @@
+class Solution:
+    def checkInclusion(self, s1: str, s2: str) -> bool:
+        counter1 = {}
+        counter2 = {}
+        left = 0
+        right = len(s1)-1
+        for i in s2[left:right+1]:
+            if i in counter2:
+                counter2[i]+=1
+            else:
+                counter2[i]=1    
+        for i in s1:
+            if i not in counter1:
+                counter1[i]=1
+            else:
+                counter1[i]+=1
+
+        while right < len(s2):
+            if counter1==counter2:
+                return True
+            right+=1
+            if right<len(s2):
+                if s2[right] in counter2:
+                    counter2[s2[right]]+=1
+                else:
+                    counter2[s2[right]]=1
+            counter2[s2[left]]-=1
+            if counter2[s2[left]]==0:
+                del counter2[s2[left]]
+
+            left+=1
+            print(counter2)
+        return False
