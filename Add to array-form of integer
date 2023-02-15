@@ -1,0 +1,11 @@
+class Solution:
+    def addToArrayForm(self, num: List[int], k: int) -> List[int]:
+        res = ""
+        arr = []
+        for i in num:
+            res+=str(i)
+        c = int(res)+k
+        d = str(c)    
+        for i in d:
+            arr.append(int(i))
+        return arr
