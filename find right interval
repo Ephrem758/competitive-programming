@@ -1,0 +1,27 @@
+class Solution:
+    def findRightInterval(self, intervals: List[List[int]]) -> List[int]:
+        res = []
+        for i in range(len(intervals)):
+            intervals[i].append(i)
+        temp = sorted(intervals)
+
+        for j in range(len(intervals)):
+            targ = intervals[j][1]
+            left,right = 0,len(temp)-1
+            prevmin = float('inf')
+            ans = -1
+            while left <= right:
+                med = (right+left) // 2
+
+                if temp[med][0]  < targ:
+                    left = med+1
+
+                elif temp[med][0] >= targ :
+                    right =  med-1
+
+                    if temp[med][0] < prevmin:
+                        prevmin = temp[med][0]
+                        ans = temp[med][2]
+            res.append(ans)
+        
+        return res
