@@ -1,0 +1,25 @@
+class Solution:
+    def combinationSum2(self, candidates: List[int], target: int) -> List[List[int]]:
+        res = []
+        candidates.sort()
+        print(candidates)
+        n = len(candidates)
+        def backtrack(i,comb):
+            if sum(comb)==target:
+                res.append(comb.copy())
+                return
+            if i>=n:
+                return
+            if sum(comb)> target:    
+                return
+
+            comb.append(candidates[i])
+            backtrack(i+1,comb)
+            j = i 
+            comb.pop()
+            while i<n and candidates[i]==candidates[j]:  
+                i+=1
+            backtrack(i,comb)
+        
+        backtrack(0,[])
+        return res
