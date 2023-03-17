@@ -1,0 +1,30 @@
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def pathSum(self, root: Optional[TreeNode], targetSum: int) -> int:
+        self.count = 0
+        dic = defaultdict(int)
+        dic[0]=1
+        def backtrack(root,prefix):
+            if prefix-targetSum in dic:
+                self.count+=dic[prefix-targetSum]
+
+
+            dic[prefix]+=1
+
+            if root.left:
+                backtrack(root.left,(prefix + root.left.val))
+            
+            if root.right:
+                backtrack(root.right,(prefix + root.right.val))
+
+            dic[prefix]-=1
+        
+        if root:
+            backtrack(root,root.val)
+
+        return self.count
