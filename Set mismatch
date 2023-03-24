@@ -1,0 +1,23 @@
+class Solution:
+    def findErrorNums(self, nums: List[int]) -> List[int]:
+        res = []
+        n = len(nums)
+        left = 0
+        while left < n:
+            corr = nums[left]-1
+            if left!= corr:
+                if nums[left]==nums[corr]:
+                    
+                    left+=1
+                elif corr >=len(nums):
+                    left+=1
+                else:
+                    nums[left],nums[corr] = nums[corr], nums[left]
+            else:
+                left+=1
+        for i in range(len(nums)):
+            if nums[i]!=i+1: 
+                res.append(nums[i])
+                res.append(i+1)
+                
+        return res
