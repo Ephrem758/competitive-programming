@@ -1,0 +1,20 @@
+class Solution:
+    def findDuplicate(self, nums: List[int]) -> int:
+
+        n = len(nums)
+        left = 0
+        while left < n:
+            corr = nums[left]-1
+            if left!= corr:
+                if nums[left]==nums[corr]:
+                    return nums[left]
+                elif corr>=len(nums):
+                    left+=1
+                else:
+                    nums[left],nums[corr] = nums[corr], nums[left]
+            else:
+                left+=1
+
+        for i in range(len(nums)):
+            if nums[i]!=i+1: 
+                return nums[i]
