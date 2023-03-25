@@ -1,0 +1,13 @@
+class Solution:
+    def mySqrt(self, x: int) -> int:
+        i = 1
+        sq = i*i
+        while x >=sq:
+            
+            if sq==x:
+                return i
+            else:
+                i+=1
+                sq = i*i
+        return i-1
+        
