@@ -1,0 +1,8 @@
+class Solution:
+    def findComplement(self, num: int) -> int:
+        print(num.bit_length())
+        k = num.bit_length() 
+        print(1<<k)
+        print(~num)
+        res = int(~num) + int(1<<k)
+        return res
