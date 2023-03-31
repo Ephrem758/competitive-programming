@@ -1,0 +1,25 @@
+class Solution:
+    def subarrayGCD(self, nums: List[int], k: int) -> int:
+
+        def gcf(a,b):
+            if b==0:
+                return a
+            a,b = b,a%b
+            return gcf(a,b)
+
+    
+        count = 0
+        n = len(nums)
+        l = 0
+        while l < n:
+            a,b = nums[l],nums[l]
+            cal = gcf(a,b)
+            for r in range(l+1,len(nums)):
+                if cal==k:
+                    count+=1
+                cal = gcf(cal,nums[r])
+            if cal==k:
+                    count+=1
+            l+=1
+
+        return count
