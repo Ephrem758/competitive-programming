@@ -1,0 +1,24 @@
+class Solution:
+    def distinctPrimeFactors(self, nums: List[int]) -> int:
+
+        primes = [True]*1001
+        primes[0]=primes[1]=False
+        def isPrime():
+            for i in range(2,1001):
+                if primes[i]:
+                    for j in range(i+i,1001,i):
+                        primes[j]=False
+        isPrime()
+
+        res = set()
+        def factor(a):
+            for i in range(2,a//2 +1):
+                if a%i==0 and primes[i]:
+                    res.add(i)
+                   
+            if primes[a]:
+                res.add(a)
+
+        for i in nums:
+            factor(i)
+        return len(res)
