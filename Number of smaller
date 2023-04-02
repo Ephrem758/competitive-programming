@@ -1,0 +1,17 @@
+n,m = map(int,input().split())
+nums1 = [int(x) for x in input().split()]
+nums2 = [int(y) for y in input().split()]
+l,r = 0,0
+count = [0]*len(nums2)
+
+while l < len(nums1) and r < len(nums2):
+    if nums2[r]>nums1[l]:
+        l+=1
+    else:
+        count[r]+=l
+        r+=1
+while r<len(nums2):
+    count[r]+=len(nums1)
+    r+=1
+print(*count)
+        
