@@ -1,0 +1,16 @@
+class Solution:
+    def successfulPairs(self, spells: List[int], potions: List[int], success: int) -> List[int]:
+        # spells.sort()
+        potions.sort()
+        n,m = len(spells),len(potions)   
+        res = []
+        for i in range(n):
+            l,r = 0,m-1
+            while l <= r:
+                mid = (l+r)//2
+                if spells[i] * potions[mid] < success:
+                    l = mid+1
+                else:
+                    r = mid-1
+            res.append(m-l)
+        return res
