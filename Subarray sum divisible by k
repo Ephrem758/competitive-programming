@@ -1,0 +1,13 @@
+class Solution:
+    def subarraysDivByK(self, nums: List[int], k: int) -> int:
+        res = preSum = 0
+        dic = {0:1}
+        for i in nums:
+            preSum+=i
+            key = preSum%k
+            if key in dic:
+                res+=dic[key]
+                dic[key]+=1
+            else:
+                dic[key]=1
+        return res
