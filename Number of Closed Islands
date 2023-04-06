@@ -1,0 +1,29 @@
+class Solution:
+    def closedIsland(self, grid: List[List[int]]) -> int:
+        n,m = len(grid),len(grid[0])
+
+        dire = [[0,1],[1,0],[-1,0],[0,-1]]
+
+        def isValid(r,c):
+            return (0 <= r < n) and (0 <=c < m)
+        # is_valid = lambda r,c: 0 <= r < n and 0 <=c< m
+        def dfs(r,c):
+            cell = True
+            if grid[r][c]==1:
+                return cell
+            grid[r][c]=1
+            for i,j in dire:
+                new_row,new_col = r+i,c+j
+                if not isValid(new_row,new_col):
+                    cell = False
+                    continue
+                
+                cell = dfs(new_row,new_col) and cell
+            return cell
+
+        ans = 0
+        for i in range(n):
+            for j in range(m):
+                if grid[i][j]==0:
+                    ans+=dfs(i,j)
+        return ans
