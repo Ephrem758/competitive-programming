@@ -1,0 +1,20 @@
+class Solution(object):
+    def validPath(self, n, edges, source, destination):
+        graph = defaultdict(list)
+        visited = set()
+        for i,j in edges:
+            graph[i].append(j)
+            graph[j].append(i)
+        
+
+        def dfs(node):
+            if node == destination:
+                return True
+            visited.add(node)
+            for neighbour in graph[node]:
+                if neighbour not in visited:
+                    found = dfs(neighbour)
+                    if found:
+                        return True
+            return False
+        return dfs(source)
