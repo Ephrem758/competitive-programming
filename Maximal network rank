@@ -1,0 +1,20 @@
+class Solution(object):
+    def maximalNetworkRank(self, n, roads):
+        graph = defaultdict(list)
+
+        for start,end in roads:
+            graph[start].append(end)
+            graph[end].append(start)
+
+
+        print(graph)
+        res = 0
+    
+        for i,j in itertools.combinations(graph.keys(),2):
+            if i in graph[j]:
+               connection = 1
+            else:
+                connection = 0
+            n,m = len(graph[i]),len(graph[j])
+            res = max(res,n+m-connection)
+        return res
