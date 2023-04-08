@@ -1,0 +1,30 @@
+"""
+# Definition for a Node.
+class Node(object):
+    def __init__(self, val=None, children=None):
+        self.val = val
+        self.children = children
+"""
+
+class Solution(object):
+    def maxDepth(self, root):
+        """
+        :type root: Node
+        :rtype: int
+        """
+        mx = [0]
+        def dfs(root, count):
+
+            if not root.children:
+                mx[0] = max(count, mx[0])
+                return
+
+            for child in root.children:
+                dfs(child, count + 1)
+            
+            
+        if not root:
+            return 0
+            
+        dfs(root, 1)
+        return mx[0]
