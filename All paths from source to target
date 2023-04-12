@@ -1,0 +1,18 @@
+class Solution:
+    def allPathsSourceTarget(self, graph: List[List[int]]) -> List[List[int]]:
+        des = len(graph)-1
+        res = []
+        path = [0]
+        
+        def dfs(node):
+            if node==des:
+                res.append(path.copy())
+                return
+           
+            for i in graph[node]:
+                path.append(i)
+                dfs(i)
+                path.pop()
+            
+        dfs(0)
+        return re
