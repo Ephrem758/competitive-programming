@@ -1,0 +1,15 @@
+class Solution:
+    def findCircleNum(self, isConnected: List[List[int]]) -> int:
+        visited = set()
+        def dfs(node):
+            if node in visited:
+                return 0
+            visited.add(node)
+            for j in range(len(isConnected)):
+                if isConnected[node][j]==1:
+                    dfs(j)
+            return 1
+        res = 0
+        for i in range(len(isConnected)):
+            res+=dfs(i)
+        return res
