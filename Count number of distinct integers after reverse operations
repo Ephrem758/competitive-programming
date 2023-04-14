@@ -1,0 +1,12 @@
+class Solution:
+    def countDistinctIntegers(self, nums: List[int]) -> int:
+        def reverse(num):
+            c = len(str(num))-1
+            if num==0:
+                return 0
+            return ((num%10)*(10**c)) + reverse(num//10)
+        n = len(nums)
+        for i in range(n):
+            nums.append(reverse(nums[i]))
+        
+        return len(set(nums))
