@@ -1,0 +1,16 @@
+t = int(input())
+for i in range(t):
+    n = int(input())
+    nums = [int(x) for x in input().split()]
+    nums.sort()
+    res = []
+    if n==1:
+        print("YES")
+    else:
+        for i in range(0,n-1):
+            if nums[i+1]-nums[i]==0 or nums[i+1]-nums[i]==1:
+                res.append(nums[i])
+        if len(res)==n-1:
+            print("YES")
+        else:
+            print("NO")
