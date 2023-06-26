@@ -1,0 +1,19 @@
+class Solution:
+    def isPossible(self, nums: List[int]) -> bool:
+        count = Counter(nums)
+        dic = defaultdict(int)
+        
+        for i in nums:
+            if count[i]:
+                count[i]-=1
+                if dic[i-1]:
+                    dic[i-1]-=1
+                    dic[i]+=1
+                elif count[i+1] and count[i+2]:
+                    count[i+1]-=1
+                    count[i+2]-=1
+                    dic[i+2]+=1
+                else:
+                    return False
+        return True
+            
